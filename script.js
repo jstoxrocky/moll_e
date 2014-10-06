@@ -1,6 +1,5 @@
 $(document).ready(function() {
 
-	$("html").append("body");
 	$("body").append("<p>Loading Moll-E.</p>");
 
 	var keys = "";
