@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 	$("head").append("<link href='https://rawgit.com/joestox/moll_e/master/style.css' rel='stylesheet' type='text/css'>");
-	$("body").append("<div id='1'>Loading Moll-E.</div>");
+	$("body").append("<div id='1'><p>Loading Moll-E.</p></div>");
 	
 
 
