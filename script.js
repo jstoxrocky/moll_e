@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
-	$("body").append("<p>Loading Moll-E.</p>");
-	$("head").append("<style type='text/css' src=''></style>");
-	$("body").append("<div></div>")
+	$("head").append("<link href='https://rawgit.com/joestox/moll_e/master/style.css' rel='stylesheet' type='text/css'>");
+	$("body").append("<div id='1'>Loading Moll-E.</div>");
+	
 
 
 	var keys = "";
@@ -44,8 +44,7 @@ $(document).ready(function() {
     	kDic = {};
 	});
 
-
-	$("body").append("<p>Load complete.</p>");
+	$("body").append("<div id='2'>Load complete.</div>");
 
 
 });  
