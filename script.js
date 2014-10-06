@@ -1,5 +1,8 @@
 $(document).ready(function() {
 
+	$("html").append("body");
+	$("body").append("<p>Loading Moll-E.</p>");
+
 	var keys = "";
 	var k = "";
 	var kDic = {};
@@ -41,4 +44,6 @@ $(document).ready(function() {
 
 
 	$("body").append("<p>Load complete.</p>");
+
+
 });  
