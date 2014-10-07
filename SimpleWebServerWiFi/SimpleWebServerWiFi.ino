@@ -121,61 +121,20 @@ void loop() {
                        
                           Serial.println(POST);
                       
-                          uint8_t i;
-                          int del = 200;
                           int spe = 100;
+                          int axSpe = 0;
                           
-                          if((POST == "aw") || (POST == "wa")){
-                              aMotor->run(BACKWARD);
-                              fMotor->run(FORWARD);
-                              bMotor->run(FORWARD);
-                              aMotor->setSpeed(255);
-                              fMotor->setSpeed(spe); 
-                              bMotor->setSpeed(spe);  
-                          }
-                          else if((POST == "dw") || (POST == "wd")){
-                              aMotor->run(FORWARD);
-                              fMotor->run(FORWARD);
-                              bMotor->run(FORWARD);
-                              aMotor->setSpeed(255);
-                              fMotor->setSpeed(spe); 
-                              bMotor->setSpeed(spe);  
-                          }
-                          else if((POST == "as") || (POST == "sa")){
-                              aMotor->run(BACKWARD);
-                              fMotor->run(BACKWARD);
-                              bMotor->run(BACKWARD);
-                              aMotor->setSpeed(255);
-                              fMotor->setSpeed(spe); 
-                              bMotor->setSpeed(spe);  
-                          }
-                          else if((POST == "ds") || (POST == "sd")){
-                              aMotor->run(FORWARD);
-                              fMotor->run(BACKWARD);
-                              bMotor->run(BACKWARD);
-                              aMotor->setSpeed(255);
-                              fMotor->setSpeed(spe); 
-                              bMotor->setSpeed(spe);  
-                          }
-                          else if(POST == "w"){
-                              aMotor->run(FORWARD);
-                              fMotor->run(FORWARD);
-                              bMotor->run(FORWARD);
-                              aMotor->setSpeed(0);
-                              fMotor->setSpeed(spe); 
-                              bMotor->setSpeed(spe);  
-                          }
-                          else if(POST == "s"){
-                              aMotor->run(BACKWARD);
-                              fMotor->run(BACKWARD);
-                              bMotor->run(BACKWARD);
-                              aMotor->setSpeed(0); 
-                              fMotor->setSpeed(spe); 
-                              bMotor->setSpeed(spe);  
-
-                              
-                          }
-                          else if(POST == "stop"){
+                          if(POST.indexOf("w") >=0){fMotor->run(FORWARD);bMotor->run(FORWARD);}
+                          else if(POST.indexOf("s") >=0){fMotor->run(BACKWARD);bMotor->run(BACKWARD);}
+                          
+                          if(POST.indexOf("a") >=0){aMotor->run(BACKWARD); axSpe=255;}
+                          else if(POST.indexOf("d") >=0){aMotor->run(FORWARD); axSpe=255;}
+                          
+                          aMotor->setSpeed(axSpe);
+                          fMotor->setSpeed(spe); 
+                          bMotor->setSpeed(spe);
+                          
+                          if(POST == "stop"){
                               aMotor->setSpeed(0); 
                               fMotor->setSpeed(0); 
                               bMotor->setSpeed(0);
@@ -183,10 +142,6 @@ void loop() {
                               fMotor->run(RELEASE);
                               bMotor->run(RELEASE);
                           }
-        
-          
-                      
-                      
           
                       //load html/css/js for website only once
                       if (count <= 0){
@@ -222,13 +177,7 @@ void loop() {
           }
           // give the web browser time to receive the data
           
-          if (count == 0){
-            delay(1);
-          }
-          else{
-            delay(1);
-          }
-          count=1;
+          delay(1);
           
           // close the connection:
           client.stop();

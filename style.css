@@ -1,8 +1,30 @@
+html, body {
+	height:100%;
+	width:100%;
+}
+
 div {
     font-family: 'Montserrat',verdana,arial,sans-serif;
     background-color: #35373b;
     color: white;
     border-radius: 6px; 
-    height: 100px;
-    width: auto;
+    width:100%;
+    text-align:center;
+}
+
+p {
+	font-size:300%;
+	padding:2%;
+}
+
+.highKey{width:20%; float:left;}
+.lowKey{width:20%; float:left;}
+
+
+.lowSpacer{
+	background-color:#ffffff;
+}
+.highSpacer{
+	width:40%;
+	background-color:#ffffff;
 }

@@ -1,9 +1,10 @@
 $(document).ready(function() {
 
-	$("head").append("<link href='https://rawgit.com/joestox/moll_e/master/style.css' rel='stylesheet' type='text/css'>");
-	$("body").append("<div id='1'><p>Loading Moll-E.</p></div>");
+	$("head").append("<link href='style.css' rel='stylesheet' type='text/css'>");
+	// $("head").append("<link href='https://rawgit.com/joestox/moll_e/master/style.css' rel='stylesheet' type='text/css'>");
 	
-
+	$("body").append("<div id='title'><p>Moll-E 1.0</p></div>");
+	
 
 	var keys = "";
 	var k = "";
@@ -44,7 +45,6 @@ $(document).ready(function() {
     	kDic = {};
 	});
 
-	$("body").append("<div id='2'>Load complete.</div>");
 
 
 });  
