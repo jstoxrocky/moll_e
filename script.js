@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
 	//DEBUG TEST LOCALLY
-	$("head").append("<link href='style.css' rel='stylesheet' type='text/css'>");
+	// $("head").append("<link href='style.css' rel='stylesheet' type='text/css'>");
 	
 	//RUN ON ARDUINO
 	$("head").append("<link href='https://rawgit.com/joestox/moll_e/master/style.css' rel='stylesheet' type='text/css'>");
