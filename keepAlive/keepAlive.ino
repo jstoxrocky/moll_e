@@ -1,8 +1,5 @@
 #include <SPI.h>
 #include <WiFi.h>
-#include <Wire.h>
-#include <Adafruit_MotorShield.h>
-#include "utility/Adafruit_PWMServoDriver.h"
 
 //Connection THings
 char ssid[] = "Forbidden_Forest";      //  your network SSID (name) 
@@ -12,40 +9,16 @@ int count = 0;
 int status = WL_IDLE_STATUS;
 WiFiServer server(80);
 
-//Motor Things
-Adafruit_MotorShield AFMS = Adafruit_MotorShield(); 
-Adafruit_DCMotor *bMotor = AFMS.getMotor(1); //back
-Adafruit_DCMotor *fMotor = AFMS.getMotor(4); //front
-Adafruit_DCMotor *aMotor = AFMS.getMotor(3); //axel
-
-
 
 void setup() {
 	
 			Serial.begin(9600);      // initialize serial communication
-
-			AFMS.begin();  // create with the default frequency 1.6KHz
-			//AFMS.begin(1000);  // OR with a different frequency, say 1KHz
-			// Set the speed to start, from 0 (off) to 255 (max speed)
-			fMotor->setSpeed(0);
-			fMotor->run(FORWARD);
-			fMotor->run(RELEASE);
-		
-			bMotor->setSpeed(0);
-			bMotor->run(FORWARD);
-			bMotor->run(RELEASE);
-		
-			aMotor->setSpeed(0);
-			aMotor->run(FORWARD);
-			aMotor->run(RELEASE);
-
 
 			// check for the presence of the shield:
 			if (WiFi.status() == WL_NO_SHIELD) {
 				Serial.println("WiFi shield not present"); 
 				while(true);        // don't continue
 			} 
-
 
 			// attempt to connect to Wifi network:
 			while ( status != WL_CONNECTED) { 
@@ -99,30 +72,9 @@ void loop() {
 											 
 													Serial.println(POST);
 											
-													int spe = 100;
-													int axSpe = 0;
-													
-													if(POST.indexOf("w") >=0){fMotor->run(FORWARD);bMotor->run(FORWARD);}
-													else if(POST.indexOf("s") >=0){fMotor->run(BACKWARD);bMotor->run(BACKWARD);}
-													
-													if(POST.indexOf("a") >=0){aMotor->run(BACKWARD); axSpe=255;}
-													else if(POST.indexOf("d") >=0){aMotor->run(FORWARD); axSpe=255;}
-													
-													aMotor->setSpeed(axSpe);
-													fMotor->setSpeed(spe); 
-													bMotor->setSpeed(spe);
-													
-													if(POST == "stop"){
-															aMotor->setSpeed(0); 
-															fMotor->setSpeed(0); 
-															bMotor->setSpeed(0);
-															aMotor->run(RELEASE);
-															fMotor->run(RELEASE);
-															bMotor->run(RELEASE);
-													}
-					
+
 											//load html/css/js for website only once
-											if (count <= 0){
+											if (count <= 1){
 												
 													client.println("HTTP/1.1 200 OK");
 													client.println("Content-Type: text/html");
@@ -138,9 +90,12 @@ void loop() {
 													client.println("<script src='https://rawgit.com/joestox/moll_e/master/script.js'></script>");
 													client.println("</head>");
 													client.println("</html>");
+//                                                                                                        delay(1000);
+
+
 											}
 										
-											count = 1;
+											count++;
 											break;
 							 
 									}
@@ -160,12 +115,22 @@ void loop() {
 					} //while client is connected
 
 					// give the web browser time to receive the data
-					delay(1);
-					
+                                        if (count <= 1){
+					    delay(10);
+					}
+                                        else {
+                                            delay(1);
+                                        }
+                                        
 					// close the connection:
-					client.stop();
-					Serial.println("client disonnected");
+//                                        if (count <= 1){
+//                                        Serial.println(count);
+                                        client.stop();
+                			Serial.println("client disonnected");
+//                                        }
+					
 			} 
+
 }
 
 
