@@ -36,7 +36,7 @@ $(document).ready(function() {
 		});
 
 	    console.log(kString);
-	    $.post('/forward', kString, function(data) { 	 
+	    $.post('/f', kString, function(data) { 	 
         	});
 
 	});
@@ -50,7 +50,7 @@ $(document).ready(function() {
 
 
 		//let Arduino know page is loaded
-		$.post('/', '1', function(data) { 	 
+		$.post('/f', '1', function(data) { 	 
 	        	});
 
 

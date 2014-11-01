@@ -75,6 +75,7 @@ void loop() {
 											}
 											 
 										    Serial.println(POST);
+										    
 										    if (POST=="1"){
 										    	Serial.println("page loaded");
 										    	count = 1;
