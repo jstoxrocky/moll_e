@@ -39,6 +39,8 @@ $(document).ready(function() {
 	    $.post("/", kString, function(data) { 	 
         	});
 
+	    keys = "";
+    	kDic = {};
 	});
 
 	// $(document).keyup(function (e) {
