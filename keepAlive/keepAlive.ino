@@ -43,15 +43,19 @@ void loop() {
 			WiFiClient client = server.available();
 			
 			if (client) {
-					Serial.println("new client");
+					Serial.println("client exists");
 		
 					// an http request ends with a blank line
 					boolean currentLineIsBlank = true;
 					
 					while (client.connected()) {
 						
+//							Serial.println("client connected");
+
 							if (client.available()) {
-								
+									
+//									Serial.println("client available");
+
 									char c = client.read();
 				
 									// if you've gotten to the end of the line (received a newline
@@ -70,11 +74,17 @@ void loop() {
 													POST += c;
 											}
 											 
-													Serial.println(POST);
+										    Serial.println(POST);
+										    if (POST=='1'){
+										    	Serial.println('page loaded');
+										    	count = 1;
+
+										    }
+          
 											
 
 											//load html/css/js for website only once
-											if (count <= 1){
+											if (count < 1){
 												
 													client.println("HTTP/1.1 200 OK");
 													client.println("Content-Type: text/html");
@@ -91,11 +101,8 @@ void loop() {
 													client.println("</head>");
 													client.println("</html>");
 //                                                                                                        delay(1000);
-
-
 											}
 										
-											count++;
 											break;
 							 
 									}
@@ -110,17 +117,13 @@ void loop() {
 									}
 							} // if client is available
 
-//							delay(1000);
+//							delay(100);
 
 					} //while client is connected
 
 					// give the web browser time to receive the data
-                                        if (count <= 1){
-					    delay(10);
-					}
-                                        else {
                                             delay(1);
-                                        }
+
                                         
 					// close the connection:
 //                                        if (count <= 1){

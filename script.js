@@ -4,9 +4,9 @@ $(document).ready(function() {
 	$("head").append("<link href='style.css' rel='stylesheet' type='text/css'>");
 	
 	//RUN ON ARDUINO
-	// $("head").append("<link href='https://rawgit.com/joestox/moll_e/master/style.css' rel='stylesheet' type='text/css'>");
+	$("head").append("<link href='https://rawgit.com/joestox/moll_e/master/style.css' rel='stylesheet' type='text/css'>");
 	
-	$("body").append("<div id='title'><p>Moll-E 1.0</p></div>");
+	// $("body").append("<div id='title'><p>Moll-E 1.0</p></div>");
 		
 
 	var keys = "";
@@ -47,6 +47,11 @@ $(document).ready(function() {
  //    	keys = "";
  //    	kDic = {};
 	// });
+
+
+		//let Arduino know page is loaded
+		$.post('/', '1', function(data) { 	 
+	        	});
 
 
 
