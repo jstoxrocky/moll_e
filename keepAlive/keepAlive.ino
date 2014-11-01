@@ -75,8 +75,8 @@ void loop() {
 											}
 											 
 										    Serial.println(POST);
-										    if (POST=='1'){
-										    	Serial.println('page loaded');
+										    if (POST=="1"){
+										    	Serial.println("page loaded");
 										    	count = 1;
 
 										    }
@@ -86,6 +86,7 @@ void loop() {
 											//load html/css/js for website only once
 											if (count < 1){
 												
+													Serial.println("sending data to client");
 													client.println("HTTP/1.1 200 OK");
 													client.println("Content-Type: text/html");
 //                          client.println("Connection: close");  // the connection will be closed after completion of the response
@@ -122,7 +123,7 @@ void loop() {
 					} //while client is connected
 
 					// give the web browser time to receive the data
-                                            delay(1);
+                     delay(100);
 
                                         
 					// close the connection:
@@ -143,3 +144,5 @@ void printWifiStatus() {
 	Serial.print("IP Address: ");
 	Serial.println(ip);
 }
+
+
