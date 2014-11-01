@@ -36,7 +36,7 @@ $(document).ready(function() {
 		});
 
 	    console.log(kString);
-	    $.post("/", kString, function(data) { 	 
+	    $.post(location.href, kString, function(data) { 	 
         	});
 
 	    keys = "";
@@ -52,7 +52,7 @@ $(document).ready(function() {
 
 
 		//let Arduino know page is loaded
-		$.post("/", "1", function(data) { 	 
+		$.post(location.href, "1", function(data) { 	 
 	        	});
 
 
